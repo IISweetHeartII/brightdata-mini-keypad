@@ -1,0 +1,15 @@
+# 키 순서 확인용 — 새 기계/새 기기에서 위·중간·아래 중 뭐가 키1인지 알아낼 때.
+# 굽고 나서 텍스트 칸(영문 입력 상태)에 눌러보면 1/2/3 이 찍힌다.
+model: ch57x-2
+orientation: normal
+rows: 1
+columns: 3
+knobs: 1
+
+layers:
+  - buttons:
+      - ["1", "2", "3"]
+    knobs:
+      - ccw: "volumedown"
+        press: "mute"
+        cw: "volumeup"

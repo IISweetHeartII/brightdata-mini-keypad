@@ -1,0 +1,16 @@
+# 맥북 — 키3만 화면 잠금(암호 요구). 자리 비울 때용
+model: ch57x-2
+orientation: normal
+rows: 1
+columns: 3
+knobs: 1
+
+layers:
+  - buttons:
+      - ["alt-2", "alt-shift-s", "ctrl-cmd-q"]
+      #    ⌥2          ⌥⇧S            ⌃⌘Q  
+      #  Shottr 전체  Shottr 영역     화면 잠금(암호 요구)
+    knobs:
+      - ccw: "volumedown"
+        press: "mute"
+        cw: "volumeup"

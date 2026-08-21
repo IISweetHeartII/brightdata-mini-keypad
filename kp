@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+# kp — Bright Data 3키+노브 매크로 키패드(CH57x 1189:8890) 프리셋 관리
+#   kp              프리셋 목록 (→ 는 마지막으로 구운 것)
+#   kp <이름>        그 프리셋을 기기에 굽는다
+#   kp keys [필터]   기기가 지원하는 키 목록
+set -euo pipefail
+
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PRESETS="$DIR/presets"
+CURRENT="$DIR/.current"
+PID=34960                      # 0x8890 — USB 1189:8890
+TOOL=ch57x-keyboard-tool
+
+die() { printf '%s\n' "$*" >&2; exit 1; }
+
+need_tool() {
+  command -v "$TOOL" >/dev/null \
+    || die "$TOOL 이 없다.  설치:  cargo install $TOOL"
+}
+
+need_device() {
+  ioreg -p IOUSB -w0 -l 2>/dev/null | grep -q "\"idProduct\" = $PID" \
+    || die "키패드가 안 붙어 있다 (USB 1189:8890 미검출).
+케이블을 확인해라 — C-to-C 케이블은 기기에 CC 풀다운 저항이 없으면 인식되지 않는다.
+A-to-C 로 바꿔서 다시 시도."
+}
+
+buttons_of() { sed -n 's/^ *- \[\(.*\)\]$/\1/p' "$1" | head -1; }
+
+list() {
+  local cur="" n mark
+  [ -f "$CURRENT" ] && cur=$(cat "$CURRENT")
+  printf '프리셋:\n\n'
+  for f in "$PRESETS"/*.yaml; do
+    n=$(basename "$f" .yaml)
+    mark="   "; [ "$n" = "$cur" ] && mark=" → "
+    printf '%s%-13s %s\n' "$mark" "$n" "$(buttons_of "$f")"
+  done
+  printf '\n굽기:  %s <이름>\n' "$(basename "$0")"
+  [ -n "$cur" ] && printf '→ = 마지막으로 구운 것 (기기에서 되읽을 수 없어 기록으로만 추적한다)\n'
+  return 0
+}
+
+apply() {
+  local name="$1" f="$PRESETS/$1.yaml"
+  if [ ! -f "$f" ]; then
+    printf '없는 프리셋: %s\n\n' "$name" >&2
+    list >&2
+    exit 1
+  fi
+  need_tool
+  need_device
+  "$TOOL" validate < "$f" >/dev/null || die "설정이 유효하지 않다: $f"
+  "$TOOL" upload   < "$f"            || die "굽기 실패 (기기 연결 확인)"
+  printf '%s' "$name" > "$CURRENT"
+  printf '✓ %s 적용됨\n  키: %s\n' "$name" "$(buttons_of "$f")"
+}
+
+case "${1:-}" in
+  ""|list|ls) list ;;
+  keys)       need_tool
+              if [ -n "${2:-}" ]; then "$TOOL" show-keys | grep -i -- "$2"
+              else "$TOOL" show-keys; fi ;;
+  -h|--help)  sed -n '2,5p' "$0" | sed 's/^# \{0,1\}//' ;;
+  *)          apply "$1" ;;
+esac

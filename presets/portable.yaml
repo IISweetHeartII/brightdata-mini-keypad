@@ -1,0 +1,15 @@
+# 휴대용 — Shottr/macOS 에 의존하지 않는 조합. Windows·Linux 에서도 그대로 동작.
+model: ch57x-2
+orientation: normal
+rows: 1
+columns: 3
+knobs: 1
+
+layers:
+  - buttons:
+      - ["prev", "play", "next"]
+      #   이전곡  재생/일시정지  다음곡
+    knobs:
+      - ccw: "volumedown"
+        press: "mute"
+        cw: "volumeup"

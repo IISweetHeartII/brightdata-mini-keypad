@@ -1,0 +1,16 @@
+# 맥북 기본 — Shottr 캡처 2종 + 화면 끄기 (3키 전부 실측 검증됨)
+model: ch57x-2
+orientation: normal
+rows: 1
+columns: 3
+knobs: 1
+
+layers:
+  - buttons:
+      - ["alt-2", "alt-shift-s", "ctrl-shift-power"]
+      #    ⌥2          ⌥⇧S            ⌃⇧Power
+      #  Shottr 전체  Shottr 영역     화면만 끄기(잠금 아님)
+    knobs:
+      - ccw: "volumedown"
+        press: "mute"
+        cw: "volumeup"
