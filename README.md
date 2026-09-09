@@ -43,6 +43,7 @@ macOS 가 띄우는 **"키보드 식별 마법사"**(ANSI 고르라는 창)는 �
 |---|---|---|
 | `mac-shottr` | `⌥2` / `⌥⇧S` / `⌃⇧Power` | [Shottr](https://shottr.cc) 전체·영역 캡처 + 화면만 끄기 |
 | `mac-clipboard` | `⌃⌥⌘V` / `⌥⇧S` / `⌃⇧Power` | Raycast 클립보드 기록 + Shottr 영역 캡처 + 화면만 끄기 |
+| `mac-work` | `⌃⌥⌘V` / `play` / `⌃⇧Power` | Raycast 클립보드 기록 + 음악 재생/일시정지 + 화면만 끄기 |
 | `mac-lock` | `⌥2` / `⌥⇧S` / `⌃⌘Q` | 키3만 화면 잠금(암호 요구). 자리 비울 때 |
 | `portable` | `prev` / `play` / `next` | 특정 앱·OS 에 의존하지 않음. Windows·Linux 에서도 동작 |
 | `identify` | `1` / `2` / `3` | 새 기계에서 키 순서 확인용 |
@@ -57,7 +58,17 @@ macOS 가 띄우는 **"키보드 식별 마법사"**(ANSI 고르라는 창)는 �
 검증 기록 (2026-09-09): 이 경로에서 `./kp mac-clipboard` exit 0으로 업로드,
 `ch57x-keyboard-tool validate < presets/mac-clipboard.yaml`의 `config is valid` 확인.
 맥에서 `⌃⌥⌘V` 호출 후 Raycast의 `Clipboard History`와 필터 입력창을 확인했다.
-키패드의 실제 버튼 누름은 사용자 확인 대기 중이다.
+이후 사용자가 실제 키1로 클립보드 기록을 열어 사용했음을 확인했다.
+
+`mac-work`는 `mac-clipboard`에서 키2만 재생/일시정지 미디어키로 바꾼다.
+키1·키3·노브는 그대로다. 키보드의 `⌥⇧S`로 Shottr 영역 캡처는 계속 쓸 수 있다.
+미디어키는 특정 Chrome 탭 전용이 아니므로 여러 미디어가 열려 있으면 제어 대상이
+달라질 수 있다. 키2를 눌러 음악 정지, 다시 눌러 재개를 확인한다.
+이전 구성 복구: `./kp mac-clipboard`.
+
+검증 기록 (2026-09-09): `mac-work`와 `mac-clipboard`의 설정값을 비교해 키2만
+변경됐음을 확인했다. `validate` 통과 및 이 경로에서 `./kp mac-work` exit 0으로
+업로드했다. 키2의 실제 음악 정지·재개는 사용자 확인 대기 중이다.
 
 ## 커스텀
 

@@ -1,0 +1,17 @@
+# mac-clipboard에서 키2만 재생/일시정지로 변경.
+# Raycast Clipboard History 전역 핫키 ⌃⌥⌘V 필요.
+# 미디어키는 현재 활성 미디어를 제어하며, 특정 Chrome 탭을 지정하지 않는다.
+model: ch57x-2
+orientation: normal
+rows: 1
+columns: 3
+knobs: 1
+
+layers:
+  - buttons:
+      - ["ctrl-alt-cmd-v", "play", "ctrl-shift-power"]
+      #  클립보드 기록      재생/일시정지  화면만 끄기
+    knobs:
+      - ccw: "volumedown"
+        press: "mute"
+        cw: "volumeup"
