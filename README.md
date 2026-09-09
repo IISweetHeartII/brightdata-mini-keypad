@@ -42,11 +42,22 @@ macOS 가 띄우는 **"키보드 식별 마법사"**(ANSI 고르라는 창)는 �
 | 이름 | 키1 / 키2 / 키3 | 용도 |
 |---|---|---|
 | `mac-shottr` | `⌥2` / `⌥⇧S` / `⌃⇧Power` | [Shottr](https://shottr.cc) 전체·영역 캡처 + 화면만 끄기 |
+| `mac-clipboard` | `⌃⌥⌘V` / `⌥⇧S` / `⌃⇧Power` | Raycast 클립보드 기록 + Shottr 영역 캡처 + 화면만 끄기 |
 | `mac-lock` | `⌥2` / `⌥⇧S` / `⌃⌘Q` | 키3만 화면 잠금(암호 요구). 자리 비울 때 |
 | `portable` | `prev` / `play` / `next` | 특정 앱·OS 에 의존하지 않음. Windows·Linux 에서도 동작 |
 | `identify` | `1` / `2` / `3` | 새 기계에서 키 순서 확인용 |
 
 노브는 전 프리셋 공통 — 좌: 볼륨 down / 누름: 음소거 / 우: 볼륨 up.
+
+`mac-clipboard`는 Raycast의 **Clipboard History** 명령에 전역 핫키 `⌃⌥⌘V`를
+지정해야 한다. 이 맥에는 2026-09-09에 지정했다. `./kp mac-clipboard`로 굽고,
+기존 전체 캡처 버튼을 눌러 클립보드 기록이 열리는지 확인한다. 물리 키의 위·아래
+위치는 추정하지 않는다. 원래 프리셋 복구: `./kp mac-shottr`.
+
+검증 기록 (2026-09-09): 이 경로에서 `./kp mac-clipboard` exit 0으로 업로드,
+`ch57x-keyboard-tool validate < presets/mac-clipboard.yaml`의 `config is valid` 확인.
+맥에서 `⌃⌥⌘V` 호출 후 Raycast의 `Clipboard History`와 필터 입력창을 확인했다.
+키패드의 실제 버튼 누름은 사용자 확인 대기 중이다.
 
 ## 커스텀
 
