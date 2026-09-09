@@ -63,7 +63,9 @@ docs/              사진, 세팅 프롬프트
    `ch57x-keyboard-tool.py` 는 업스트림에 없다(404 확인).
 2. **`minikeyboard.top` · `sayodevice.com` · `key.soku.cc` 는 이 기기를 못 잡는다.**
    SayoDevice 는 다른 회사의 다른 프로토콜이다. 여기서 시간 쓰지 마라.
-3. **`validate`/`upload` 는 파일 인자를 안 받는다 — stdin 전용.**
+3. **`kp`는 `validate`/`upload`에 stdin으로 설정을 전달한다.**
+   2026-09-09 확인한 `1.8.0`은 `[CONFIG_PATH]` 인자도 지원한다.
+   예전의 "stdin 전용" 기록을 현재 버전에 일반화하지 말고 `--help`로 확인하라.
 4. 3키 모델은 **시퀀스의 첫 키에만** 모디파이어가 붙는다.
    시퀀스 상한은 **5키**이고 미디어키는 시퀀스에 넣을 수 없다.
    따라서 `/compact` 같은 텍스트 매크로는 불가능하다 — 긴 매크로는 Raycast 등

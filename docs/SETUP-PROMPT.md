@@ -30,7 +30,8 @@ kriomant/ch57x-keyboard-tool (Rust):
 2) minikeyboard.top / sayodevice.com / key.soku.cc 같은 웹 설정기로는
    영원히 안 잡힌다. SayoDevice 는 다른 회사의 다른 프로토콜이고, 이 기기는
    raw USB control transfer 라 WebHID 와 무관해. 여기서 시간 쓰지 마.
-3) validate/upload 는 파일 인자를 안 받아. stdin 전용이야 → upload < mapping.yaml
+3) 이 레포는 validate/upload 에 stdin으로 설정을 전달해 → upload < mapping.yaml
+   확인한 1.8.0은 파일 경로 인자도 지원하므로 다른 버전은 --help로 확인해.
 4) 3키 모델은 시퀀스의 "첫 키에만" 모디파이어가 붙는다.
 5) macOS "키보드 식별 마법사"(ANSI 고르라는 창)는 하드웨어와 무관해. 닫아도 돼.
 
